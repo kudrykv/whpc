@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"github.com/kudrykv/whpc/app/internal/log"
 	"github.com/sirupsen/logrus"
+	"time"
 )
 
 type sessionHandler struct {
@@ -64,6 +65,8 @@ func (h *sessionHandler) StartWebsocketSessionLoop(c *websocket.Conn) {
 		}).Info("got response from the app")
 
 		answer := types.Req{
+			Id:     req.Id,
+			Time:   types.JsonTime(time.Now()),
 			Header: resp.Header,
 			Body:   respBodyBytes,
 		}
