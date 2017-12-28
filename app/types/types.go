@@ -1,10 +1,14 @@
 package types
 
-import "net/http"
+import (
+	"net/http"
+	"time"
+)
 
 type Req struct {
 	Id     string      `json:"id"`
-	Time   JsonTime    `json:"time"`
+	Time   time.Time   `json:"time"`
+	Status int         `json:"status"`
 	Header http.Header `json:"headers"`
 	Body   []byte      `json:"body"`
 }

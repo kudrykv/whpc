@@ -66,7 +66,8 @@ func (h *sessionHandler) StartWebsocketSessionLoop(c *websocket.Conn) {
 
 		answer := types.Req{
 			Id:     req.Id,
-			Time:   types.JsonTime(time.Now()),
+			Time:   time.Now(),
+			Status: resp.StatusCode,
 			Header: resp.Header,
 			Body:   respBodyBytes,
 		}
