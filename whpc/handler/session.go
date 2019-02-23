@@ -5,10 +5,10 @@ import (
 	"bytes"
 	"io/ioutil"
 	"github.com/gorilla/websocket"
-	"github.com/kudrykv/whpc/app/internal/config"
-	"github.com/kudrykv/whpc/app/types"
+	"github.com/kudrykv/whpc/whpc/internal/config"
+	"github.com/kudrykv/whpc/whpc/types"
 	"net/http"
-	"github.com/kudrykv/whpc/app/internal/log"
+	"github.com/kudrykv/whpc/whpc/internal/log"
 	"github.com/sirupsen/logrus"
 	"time"
 )
@@ -62,7 +62,7 @@ func (h *sessionHandler) StartWebsocketSessionLoop(c *websocket.Conn) {
 		log.WithFields(logrus.Fields{
 			"status":   resp.Status,
 			"body_len": len(respBodyBytes),
-		}).Info("got response from the app")
+		}).Info("got response from the whpc")
 
 		answer := types.Req{
 			Id:     req.Id,

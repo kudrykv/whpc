@@ -25,16 +25,10 @@ This is a client for the [`whps`](https://github.com/kudrykv/whps).
 It connects to the server using websocket and relays incoming messages
 to the `Application`.
 
-# Build
+# Get
 
-Get dependencies using Govendor:
-```bash
-govendor sync
-```
-
-Build a binary:
-```bash
-go build -o whpc ./app
+```sh
+go get -u github.com/kudrykv/whpc/whpc
 ```
 
 # Usage

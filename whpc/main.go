@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/gorilla/websocket"
 	"flag"
+	"github.com/gorilla/websocket"
+	"github.com/kudrykv/whpc/whpc/handler"
+	"github.com/kudrykv/whpc/whpc/internal/config"
+	"github.com/kudrykv/whpc/whpc/internal/log"
+	"github.com/kudrykv/whpc/whpc/internal/wsping"
 	"github.com/sirupsen/logrus"
-	"github.com/kudrykv/whpc/app/internal/config"
-	"github.com/kudrykv/whpc/app/internal/wsping"
-	"github.com/kudrykv/whpc/app/handler"
-	"github.com/kudrykv/whpc/app/internal/log"
 )
 
 func main() {
@@ -32,7 +32,10 @@ func main() {
 		return
 	}
 	defer c.Close()
-	log.Info("host dialed")
+
+	log.WithFields(logrus.Fields{
+		"webhook_url": "https://whps.herokuapp.com/webhook/"+cfg.Channel,
+	}).Info("host dialed")
 
 	log.WithField("ping_interval", cfg.PingInterval).Info("setup ping routine")
 	go wsping.Ping(c, cfg.PingInterval)
